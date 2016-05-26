@@ -2,8 +2,9 @@
 
 var Hapi = require('hapi');
 var os = require('os');
-
 var plugin = require('./plugin');
+
+var port = process.env.PORT || 3000;
 
 exports.server = function(name) {
   var server = new Hapi.Server();
@@ -11,7 +12,7 @@ exports.server = function(name) {
     register: plugin,
     options: {
       host: os.hostname(),
-      port: 3000,
+      port: port,
       name: name
     }
   }, (err) => {
@@ -20,6 +21,6 @@ exports.server = function(name) {
     }
   });
 
-  server.connection({port: 3000});
+  server.connection({port: port});
   return server;
 };
