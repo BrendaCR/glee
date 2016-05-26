@@ -1,8 +1,9 @@
 'use strict';
 
 var Hapi = require('hapi');
+var os = require('os');
+
 var plugin = require('./plugin');
-var os = require('./os');
 
 exports.server = function(name) {
   var server = new Hapi.Server();
