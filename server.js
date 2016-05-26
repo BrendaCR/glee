@@ -2,13 +2,14 @@
 
 var Hapi = require('hapi');
 var plugin = require('./plugin');
+var os = require('./os');
 
 exports.server = function(name) {
   var server = new Hapi.Server();
   server.register({
     register: plugin,
     options: {
-      host: 'localhost',
+      host: os.hostname(),
       port: 3000,
       name: name
     }

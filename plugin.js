@@ -3,7 +3,7 @@
 var zookeeper = require('node-zookeeper-client');
 var os = require('os');
 
-var client = zookeeper.createClient(os.hostname() + ':2181');
+var client = zookeeper.createClient('ec2-54-187-246-173.us-west-2.compute.amazonaws.com:2181');
 client.connect();
 
 function registerService(options) {
