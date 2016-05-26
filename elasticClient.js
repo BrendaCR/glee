@@ -3,7 +3,7 @@
 var elasticsearch = require('elasticsearch');
 var zookeeper = require('node-zookeeper-client');
 
-var zookeeperClient = zookeeper.createClient('localhost:2181');
+var zookeeperClient = zookeeper.createClient('ec2-54-187-246-173.us-west-2.compute.amazonaws.com:2181');
 zookeeperClient.connect();
 
 var exportedClient = new Promise((resolve, reject) => {
