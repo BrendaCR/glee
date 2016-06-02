@@ -17,7 +17,7 @@ var buildRoutes = function(dirname) {
 var server = function(dirname, name) {
   var server = new hapi.Server();
   server.connection({
-    port: proces.env.PORT || config.get('port')
+    port: process.env.PORT || config.get('port')
   });
   server.register(buildRoutes(dirname));
   return server;
