@@ -1,3 +1,3 @@
 module.exports = {
-  server: require('./server').server
+  server: require('./server')
 }

@@ -23,6 +23,4 @@ var server = function(dirname, name) {
   return server;
 };
 
-exports = {
-  server: server
-}
+module.exports = server;
