@@ -1,26 +1,28 @@
 'use strict';
 
-var Hapi = require('hapi');
-var os = require('os');
-var plugin = require('./plugin');
+const _ = require('lodash');
+const config = require('config');
+const fs = require('fs');
+const hapi = require('hapi');
 
-var port = process.env.PORT || 3000;
-
-exports.server = function(name) {
-  var server = new Hapi.Server();
-  server.register({
-    register: plugin,
-    options: {
-      host: os.hostname(),
-      port: port,
-      name: name
-    }
-  }, (err) => {
-    if (err) {
-      console.error('Failed to load plugin:', err);
+var buildRoutes = function(dirname) {
+  return _.map(fs.readdirSync('./resources'), function(resource) {
+    return {
+      register: require(dirname + '/resources/' + resource),
+      routes: { prefix: '/' + resource }
     }
   });
+};
 
-  server.connection({port: port});
+var server = function(dirname, name) {
+  var server = new hapi.Server();
+  server.connection({
+    port: proces.env.PORT || config.get('port')
+  });
+  server.register(buildRoutes(dirname));
   return server;
 };
+
+exports = {
+  server: server
+}
