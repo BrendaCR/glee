@@ -1,4 +1,3 @@
 module.exports = {
-  server: require('./server').server,
-  elasticClient: require('./elasticClient').client
+  server: require('./server').server
 }
